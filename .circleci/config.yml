@@ -40,6 +40,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - write_to_file
       - read_from_file:
           requires:
             - write_to_file
