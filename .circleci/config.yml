@@ -174,10 +174,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum update
-            yum -y install tar
-            yum -y install gzip
-            yum -y install ansible
+            apt -y update
+            apt -y install tar
+            apt -y install gzip
+            apt -y install ansible
       - run:
           name: Configure server
           command: |
