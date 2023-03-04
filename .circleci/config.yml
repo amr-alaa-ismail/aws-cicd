@@ -133,8 +133,8 @@ jobs:
       - run:
           command: |
             yum update
-            yum install tar
-            yum install gzip
+            yum -y install tar
+            yum -y install gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
