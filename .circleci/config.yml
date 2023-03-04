@@ -162,6 +162,27 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
 
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["0d:23:d1:28:08:58:2b:9f:48:cc:91:ea:21:fe:94:ab:42:6e:2f:81"]
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install dependencies
+          command: |
+            yum update
+            yum -y install tar
+            yum -y install gzip
+            yum -y install ansible
+      - run:
+          name: Configure server
+          command: |
+            # Your code here
+            exit 1
 workflows:
   default:
     jobs:
