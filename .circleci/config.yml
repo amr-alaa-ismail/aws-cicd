@@ -169,8 +169,6 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: ["0d:23:d1:28:08:58:2b:9f:48:cc:91:ea:21:fe:94:ab:42:6e:2f:81"]
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
@@ -178,6 +176,8 @@ jobs:
             yum -y install tar
             yum -y install gzip
             yum -y install ansible
+      - attach_workspace:
+          at: ~/
       - run:
           name: Configure server
           command: |
