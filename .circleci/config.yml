@@ -173,7 +173,24 @@ jobs:
           name: Install dependencies
           command: |
             apk add gzip openssh-client ansible
-      # To be removed .. start ..
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Configure server
+          command: |
+            cd ~/project/.circleci/ansible 
+            ansible-playbook -i inventory.txt configure-server.yml
+
+  dummy:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          command: |
+            yum update
+            yum -y install tar
+            yum -y install gzip
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -184,14 +201,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      # .. end ..
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Configure server
-          command: |
-            cd ~/project/.circleci/ansible 
-            ansible-playbook -i inventory.txt configure-server.yml
+
 workflows:
   default:
     jobs:
@@ -208,4 +218,6 @@ workflows:
       # - deploy-infrastructure
       # - configure-infrastructure:
       #     requires: [deploy-infrastructure]
-      - configure-infrastructure
+      - dummy
+      - configure-infrastructure:
+          requires: [dummy]
