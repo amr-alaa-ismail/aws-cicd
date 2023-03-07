@@ -132,7 +132,7 @@ jobs:
       - checkout
       - run:
           command: |
-            yum update
+            yum -y update
             yum -y install tar
             yum -y install gzip
       - run:
