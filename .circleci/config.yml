@@ -236,11 +236,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add gzip openssh-client ansible
+            apk add gzip openssh-client ansible npm
       - attach_workspace:
           at: ~/
       - run:
-          name: Deploy bakcend
+          name: Deploy backend
           command: |
             cd backend
             npm i
