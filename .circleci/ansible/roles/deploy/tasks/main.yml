@@ -1,14 +1,14 @@
 - name: Extract file
   shell: |
-    mkdir /home/ubuntu/backend
+    mkdir /home/amr/backend
     cd ~/project/backend
-    tar -xf archive.tar.gz -C /home/ubuntu/backend
+    tar -xf archive.tar.gz -C /home/amr/backend
 
 - name: Installing Node Dependencies
   shell: |
-    cd /home/ubuntu/backend
+    cd /home/amr/backend
     npm i
 - name: Start the app
   shell: |
     pm2 stop default
-    pm2 start -f /home/ubuntu/backend/dist/main.js
+    pm2 start -f /home/amr/backend/dist/main.js
