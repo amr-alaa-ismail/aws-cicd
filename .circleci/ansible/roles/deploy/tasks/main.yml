@@ -1,4 +1,21 @@
-- name: extract and copy to Ec2
+- name: Extract file
+  shell: |
     cd ~/project/backend
     tar -xf archive.tar.gz -C ~/project/backend
-    ls ~/project/backend
+
+- name: Installing Node Dependencies
+  shell: |
+    cd ~/project/backend
+    npm i
+- name: Start the app
+  shell: |
+    export TYPEORM_ENTITIES=./backend/dist/modules/domain/**/*.entity{.ts,.js}
+    export TYPEORM_HOST=localhost
+    export TYPEORM_PORT=5532
+    export TYPEORM_USERNAME=postgres
+    export TYPEORM_PASSWORD=postgres
+    export TYPEORM_DATABASE=postgres
+    export TYPEORM_MIGRATIONS_DIR=./dist/migrations
+    export TYPEORM_MIGRATIONS=./dist/migrations/*.ts
+    pm2 stop default
+    pm2 start -f ./backend/dist/main.js
