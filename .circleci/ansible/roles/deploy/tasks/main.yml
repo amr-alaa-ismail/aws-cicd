@@ -1,0 +1,4 @@
+- name: extract and copy to Ec2
+    cd ~/project/backend
+    tar -xf archive.tar.gz -C ~/project/backend
+    ls ~/project/backend
