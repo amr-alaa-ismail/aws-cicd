@@ -214,7 +214,7 @@ jobs:
             yum -y install tar
             yum -y install gzip
             yum -y install python3
-            yum -y install nodejs
+            yum -y install node
       - run:
           name: Get backend url
           command: |
