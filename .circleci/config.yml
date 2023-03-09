@@ -211,9 +211,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum -y install tar
-            yum -y install gzip
-            yum -y install python3
+            # yum -y install tar
+            # yum -y install gzip
+            # yum -y install python3
       - run:
           name: Get backend url
           command: |
