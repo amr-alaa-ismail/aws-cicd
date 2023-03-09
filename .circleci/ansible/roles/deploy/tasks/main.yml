@@ -1,8 +1,11 @@
+- name: Create Backend Directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
 - name: Extract file
   shell: |
-    mkdir /home/ubuntu/backend
     cd ~/project/backend
-    tar -xf archive.tar.gz -C /home/amr/backend
+    tar -xf archive.tar.gz -C /home/ubuntu/backend
 
 - name: Installing Node Dependencies
   shell: |
