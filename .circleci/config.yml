@@ -205,16 +205,15 @@ jobs:
   
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: doctrine/nodejs-aws-cli
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            # yum -y install tar
-            # yum -y install gzip
-            # yum -y install python3
-            yum install nodejs npm --enablerepo=epel
+            yum -y install tar
+            yum -y install gzip
+            yum -y install python3
       - run:
           name: Get backend url
           command: |
