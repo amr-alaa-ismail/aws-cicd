@@ -22,7 +22,7 @@
     state: directory
 
 - copy:
-    src: ~/project/.circleci/ansible/roles/deploy/artifact.tar.gz
+    src: ~/project/backend/artifact.tar.gz
     dest: /home/ubuntu/backend
 
 - name: Extract artifact.tar.gz to EC2 
