@@ -192,15 +192,9 @@ jobs:
       - run:
           name: Configure server
           command: |
-            pwd
-            ls
             cd .circleci/ansible
-            pwd
-            ls
-          # command: |
-          #   cd project/.circleci/ansible/
-          #   cat inventory.txt
-          #   ansible-playbook -i inventory.txt configure-server.yml
+            cat inventory.txt
+            # ansible-playbook -i inventory.txt configure-server.yml
 
   run-migrations:
     docker:
@@ -261,16 +255,23 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            cd ~/project/backend
-            npm i
-            npm run build
-            cd ..
-            # Zip the directory
-            tar -czvf artifact.tar.gz .
-            cd ~/project/.circleci/ansible/
-            echo "Contents  of the inventory.txt file is -------"
+            pwd
+            ls
+            cd .circleci/ansible
+            pwd
+            ls
             cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml
+          # command: |
+          #   cd backend
+          #   npm i
+          #   npm run build
+          #   cd ..
+          #   # Zip the directory
+          #   tar -czvf artifact.tar.gz .
+          #   cd .circleci/ansible
+          #   echo "Contents  of the inventory.txt file is -------"
+          #   cat inventory.txt
+          #   ansible-playbook -i inventory.txt deploy-backend.yml
 
   smoke-test:
     docker:
