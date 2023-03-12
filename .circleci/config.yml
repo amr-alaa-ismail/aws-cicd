@@ -193,7 +193,10 @@ jobs:
           name: Configure server
           command: |
             pwd
-            ll
+            ls
+            cd .circleci/ansible
+            pwd
+            ls
           # command: |
           #   cd project/.circleci/ansible/
           #   cat inventory.txt
