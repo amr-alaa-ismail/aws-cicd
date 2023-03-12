@@ -22,12 +22,12 @@
     state: directory
 
 - copy:
-    src: ~/project/backend/artifact2.tar.gz
+    src: ~/project/backend/artifact.tar.gz
     dest: /home/ubuntu/backend
 
 - name: Extract artifact.tar.gz to EC2 
   unarchive:
-    src: artifact2.tar.gz
+    src: artifact.tar.gz
     dest: /home/ubuntu/backend
 
 - name: "Installing Node Dependencies"
