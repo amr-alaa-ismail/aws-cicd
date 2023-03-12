@@ -16,14 +16,14 @@
 #     pm2 stop default
 #     pm2 start -f /home/ubuntu/backend/dist/main.js
 
-# - name: Create Backend Directory
-#   file:
-#     path: /home/ubuntu/backend/
-#     state: directory
+- name: Create Backend Directory
+  file:
+    path: /home/ubuntu/backend/
+    state: directory
 
-# - copy:
-#     src: ~/project/backend/artifact.tar.gz
-#     dest: /home/ubuntu/backend
+- copy:
+    src: ~/project/backend/artifact.tar.gz
+    dest: /home/ubuntu/backend
 
 - name: Extract artifact.tar.gz to EC2 
   unarchive:
