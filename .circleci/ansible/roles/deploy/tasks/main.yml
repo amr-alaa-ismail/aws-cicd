@@ -21,11 +21,6 @@
     path: /home/ubuntu/backend/
     state: directory
 
-- name: Check folder created
-  shell: |
-    cd /home/ubuntu/
-    ll
-
 - copy:
     src: ~/project/backend/artifact.tar.gz
     dest: /home/ubuntu/backend
