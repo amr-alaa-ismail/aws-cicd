@@ -1,21 +1,3 @@
-# - name: Create Backend Directory
-#   file:
-#     path: /home/ubuntu/backend
-#     state: directory
-# - name: Extract file
-#   shell: |
-#     cd ~/project/backend
-#     tar -xf archive.tar.gz -C /home/ubuntu/backend
-
-# - name: Installing Node Dependencies
-#   shell: |
-#     cd /home/ubuntu/backend
-#     npm i
-# - name: Start the app
-#   shell: |
-#     pm2 stop default
-#     pm2 start -f /home/ubuntu/backend/dist/main.js
-
 - name: Create Backend Directory
   file:
     path: /home/ubuntu/backend/
