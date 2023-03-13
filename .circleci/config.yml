@@ -274,7 +274,7 @@ jobs:
 
   smoke-test:
     docker:
-      - image: amazon/aws-cli
+      - image: doctrine/nodejs-aws-cli
     steps:
       - checkout
       - run:
