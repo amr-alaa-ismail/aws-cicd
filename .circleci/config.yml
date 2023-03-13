@@ -318,13 +318,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Save Old Workflow ID to file
+          name: Save Old Workflow ID to KVDB
           command: |
             export OldWorkflowID=$(aws cloudformation \
                       list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
                       --no-paginate --output text)
             echo "Old Workflow ID: ${OldWorkflowID}"
-            echo "${OldWorkflowID}" >> ~/project/oldWorkflowId.txt
+            curl -k https://kvdb.io/8h1XpKuGWtN48k95ctrdD4/old_workflow_id -d "${OldWorkflowID}"
       - run:
           name: Update cloudfront distribution
           command: |
@@ -345,6 +345,7 @@ jobs:
                 --query "StackSummaries[*].StackName" \
                 --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/8h1XpKuGWtN48k95ctrdD4/old_workflow_id)
             echo Old Workflow ID: "${OldWorkflowID}" 
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
