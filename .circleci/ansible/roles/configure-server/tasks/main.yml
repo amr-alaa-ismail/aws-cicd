@@ -43,10 +43,6 @@
     state: absent
 
 - name: "Creating service"
-  user: ubuntu
-  become: true
-  become_method: sudo
-  become_user: root  
   copy:
     dest: /etc/systemd/system/node-exporter.service
     content: |
@@ -60,6 +56,9 @@
 
       [Install]
       WantedBy=multi-user.target
+  become: true
+  become_method: sudo
+  become_user: root
 
 - name: reload daemon and restart node_exporter
   become: true
