@@ -17,3 +17,49 @@
     global: yes
     production: yes
     state: present
+
+- name: download and unzip node exporter if not exist
+  unarchive:
+    src: "https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz"
+    dest: /tmp/
+    remote_src: yes
+    validate_certs: no
+
+- name: move the binary to the final destination
+  copy:
+    src: /tmp/node_exporter-1.0.1.linux-amd64/node_exporter
+    dest: /usr/local/bin/node_exporter
+    remote_src: yes
+
+- name: remove installation directory
+  file:
+    path: /tmp/node_exporter-1.0.1.linux-amd64/
+    state: absent
+
+- name: Creating service
+  copy:
+    dest: /etc/systemd/system/node-exporter.service
+    content: |
+      [Unit]
+      Description=Prometheus Node Exporter Service
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/node_exporter
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: reload daemon and restart node_exporter
+  systemd:
+    name: node_exporter
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+
+- name: node_exporter starts at the beginning
+  systemd:
+    name: node_exporter
+    state: started
+    enabled: yes
