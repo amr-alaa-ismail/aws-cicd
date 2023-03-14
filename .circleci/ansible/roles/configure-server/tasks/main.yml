@@ -53,13 +53,13 @@
 
 - name: reload daemon and restart node_exporter
   systemd:
-    name: node_exporter
+    name: node-exporter
     state: restarted
     daemon_reload: yes
     enabled: yes
 
 - name: node_exporter starts at the beginning
   systemd:
-    name: node_exporter
+    name: node-exporter
     state: started
     enabled: yes
