@@ -43,12 +43,11 @@
     state: absent
 
 - name: Creating service
+  user: ubuntu
   become: true
   become_method: sudo
+  become_user: root  
   copy:
-    owner: root
-    group: root
-    mode: 0755
     dest: /etc/systemd/system/node-exporter.service
     content: |
       [Unit]
