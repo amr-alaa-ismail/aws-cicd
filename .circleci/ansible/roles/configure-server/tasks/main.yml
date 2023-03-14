@@ -42,7 +42,7 @@
     path: /tmp/node_exporter-1.0.1.linux-amd64/
     state: absent
 
-- name: Creating service
+- name: "Creating service"
   user: ubuntu
   become: true
   become_method: sudo
