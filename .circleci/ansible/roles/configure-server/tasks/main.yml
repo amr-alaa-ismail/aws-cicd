@@ -46,6 +46,9 @@
   become: true
   become_method: sudo
   copy:
+    owner: root
+    group: root
+    mode: 0755
     dest: /etc/systemd/system/node-exporter.service
     content: |
       [Unit]
