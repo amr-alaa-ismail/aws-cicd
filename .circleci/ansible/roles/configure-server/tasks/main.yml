@@ -42,6 +42,11 @@
     path: /tmp/node_exporter-1.0.1.linux-amd64/
     state: absent
 
+- name: "change node_exporter permission"
+  become: true
+  become_method: sudo
+  raw: chmod 777 /usr/local/bin/node_exporter
+
 - name: "Creating service"
   copy:
     dest: /etc/systemd/system/node-exporter.service
