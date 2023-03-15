@@ -51,6 +51,19 @@ commands:
             fi
 
 jobs:
+  init-stack:
+    docker:
+      - image: doctrine/nodejs-aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Update cloudfront distribution
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/cloudfront.yml \
+              --parameter-overrides WorkflowID=udapeople-kk1j287dhjppmz437 \
+              --stack-name InitialStack
+
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -331,7 +344,7 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/files/cloudfront.yml \
               --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
-              --stack-name InitialStack
+              --stack-name "InitialStack-${OldWorkflowID}"
             echo "New Workflow ID: ${CIRCLE_WORKFLOW_ID:0:7}"
 
   cleanup:
@@ -361,6 +374,7 @@ jobs:
 workflows:
   default:
     jobs:
+      - init-stack
       - build-frontend
       - build-backend
       - test-frontend:
