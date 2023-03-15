@@ -1,3 +1,3 @@
 [URL01] https://github.com/amr-alaa-ismail/aws-cicd
 
-[URL02] http://udapeople-c87bb97.s3-website-us-east-1.amazonaws.com
+[URL02] http://udapeople-65e3a84.s3-website-us-east-1.amazonaws.com
